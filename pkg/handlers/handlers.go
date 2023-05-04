@@ -1,7 +1,9 @@
-package main
+package handlers
 
 import (
 	"net/http"
+
+	"github.com/tsawler/go-course/pkg/render"
 )
 
 // in order for a function to respond to a request from a web browser it needs two parameters
@@ -9,7 +11,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	// fmt.Fprintf(w, "This is the home page")
 
 	//-----
-	renderTemplate(w, "home.page.html")
+	render.RenderTemplate(w, "home.page.html")
 }
 
 func About(w http.ResponseWriter, r *http.Request) {
@@ -18,5 +20,5 @@ func About(w http.ResponseWriter, r *http.Request) {
 	// _, _ = fmt.Fprintf(w, fmt.Sprintf("This is the about page and 2 + 2 is %d", sum))
 
 	// -----------
-	renderTemplate(w, "about.page.html")
+	render.RenderTemplate(w, "about.page.html")
 }
