@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/tsawler/go-course/pkg/config"
+	"github.com/tsawler/go-course/pkg/models"
 	"github.com/tsawler/go-course/pkg/render"
 )
 
@@ -32,7 +33,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	// fmt.Fprintf(w, "This is the home page")
 
 	//-----
-	render.RenderTemplate(w, "home.page.html")
+	render.RenderTemplate(w, "home.page.html", &models.TemplateData{})
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
@@ -41,5 +42,12 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	// _, _ = fmt.Fprintf(w, fmt.Sprintf("This is the about page and 2 + 2 is %d", sum))
 
 	// -----------
-	render.RenderTemplate(w, "about.page.html")
+
+	// perform some logic
+	stringMap := make(map[string]string)
+	stringMap["test"] = "Hello, again."
+
+	render.RenderTemplate(w, "about.page.html", &models.TemplateData{
+		StringMap: stringMap,
+	})
 }
